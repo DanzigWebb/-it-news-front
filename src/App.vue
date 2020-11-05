@@ -7,10 +7,13 @@
       <router-view></router-view>
     </v-main>
 
-    <ProgressCircular v-if="isLoading" />
+    <!-- Todo (!) создать единый компонент прелоадера <ProgressCircular> -->
+    <!-- Todo (!) удалить лоадеры из других роутов -->
+    <!-- <ProgressCircular v-if="isLoad" /> -->
 
   </v-app>
 </template>
+
 
 <script>
 import ProgressCircular from '@/components/ui/ProgressCircular'
@@ -23,10 +26,6 @@ export default {
     Header,
     ProgressCircular,
   },
-
-  data: () => ({
-    isLoading: false,
-  }),
 
   methods: {
   }
