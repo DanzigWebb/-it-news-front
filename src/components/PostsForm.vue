@@ -1,56 +1,46 @@
 <template>
-  <v-container>
-    <v-form v-model="valid" @submit.prevent="onSubmit()">
-      <v-container>
-        <v-row align="center">
-          <v-col
-              class="d-flex"
-              cols="12"
-              md="4"
-          >
-            <v-select
-                label="Кол-во страниц"
-                :items="pages"
-                v-model="currentPage"
-                filled
-            />
-          </v-col>
+  <v-form v-model="valid" @submit.prevent="onSubmit()">
+    <v-row align="center">
+      <v-col
+          class="d-flex"
+          cols="12"
+          md="4"
+      >
+        <v-select
+            label="Кол-во страниц"
+            :items="pages"
+            v-model="currentPage"
+            filled
+        />
+      </v-col>
 
-          <v-col
-              class="d-flex"
-              cols="12"
-              md="4"
-          >
-            <v-text-field
-                label="Темы"
-                v-model="inputSubject"
-                filled/>
-<!--            <v-select-->
-<!--                label="Темы"-->
-<!--                :items="subjects"-->
-<!--                v-model="currentSubject"-->
-<!--                filled-->
-<!--            />-->
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-              class="d-flex"
-              cols="12"
-              md="12"
-          >
-            <v-btn
-                color="primary"
-                class="mr-4"
-                type="submit"
-            >
-              Дай статьи
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-form>
-  </v-container>
+      <v-col
+          class="d-flex"
+          cols="12"
+          md="4"
+      >
+        <v-text-field
+            label="Темы"
+            v-model="inputSubject"
+            filled />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+          class="d-flex"
+          cols="12"
+          md="12"
+      >
+        <v-btn
+            color="primary"
+            class="mr-4"
+            type="submit"
+        >
+          Дай статьи
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-form>
 </template>
 
 <script>
@@ -63,7 +53,7 @@ export default {
     subjects: ['JavaScript', 'Angular', 'Vue'],
     currentPage: null,
     currentSubject: null,
-    inputSubject: ""
+    inputSubject: ''
   }),
   created() {
     const [page] = this.pages
