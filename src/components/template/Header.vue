@@ -24,15 +24,46 @@
       />
     </div>
 
-    <v-spacer></v-spacer>
+    <div class="header__links">
+      <router-link to="/" v-slot="{ navigate, isExactActive }">
+        <v-btn
+            small text
+            :disabled="isExactActive"
+            @click="navigate">
+          Домой
+        </v-btn>
+      </router-link>
 
-    <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-    >
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
-    </v-btn>
+      <router-link to="/search" v-slot="{ navigate, isExactActive }">
+        <v-btn
+            small text
+            :disabled="isExactActive"
+            @click="navigate">
+          Поиск
+        </v-btn>
+      </router-link>
+    </div>
+
   </v-app-bar>
 </template>
+
+<script>
+export default {
+  methods: {
+    setColor(isActive) {
+      return isActive ? 'error' : 'normal'
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.header {
+  &__links {
+    padding-left: 2rem;
+  }
+  &__link {
+    text-decoration: none;
+  }
+}
+</style>
