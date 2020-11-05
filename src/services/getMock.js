@@ -1,13 +1,5 @@
 import { Config } from '@/config/config'
-
-class Post {
-  constructor(postData) {
-    this.title = postData.title;
-    this.link = postData.link;
-    this.img = postData.img;
-    this.description = postData.description;
-  }
-}
+import { Post } from '@/services/models/Post'
 
 export default async function (data) {
   const url = `${Config.host}posts`
