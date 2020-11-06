@@ -1,7 +1,10 @@
 import { Config } from '@/config/config'
 import { PostsResponse } from '@/services/models/Post'
+import { Loader } from '@/components/ui/loader/LoaderState'
 
 export default async function (data) {
+  Loader.show()
+
   const url = `${Config.host}posts`
   const res = await fetch(url, {
     method: 'POST',
@@ -12,5 +15,6 @@ export default async function (data) {
   })
 
   const toJSON = await res.json()
+  Loader.hide()
   return new PostsResponse(toJSON)
 }

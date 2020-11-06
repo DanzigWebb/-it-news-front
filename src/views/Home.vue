@@ -3,7 +3,7 @@
     <h2>Home Page Motherfaker</h2>
 
     <div class="pa-md-10 pa-3" v-if="posts.length">
-      <p>Кол-во статей: {{quality}}</p>
+      <p>Кол-во статей: {{ quality }}</p>
       <PostItem
           v-for="post in posts"
           :post="post"
@@ -11,27 +11,23 @@
       />
     </div>
 
-    <ProgressCircular v-if="isLoad" />
   </v-container>
 </template>
 
 <script>
 import PostItem from '@/components/posts/PostItem'
-import getDefaultPosts from '@/services/getDefaultPosts'
-import ProgressCircular from '@/components/ui/ProgressCircular'
+import getDefaultPosts from '@/services/posts/getDefaultPosts'
 
 export default {
-  name: 'Home',
+  name: 'home',
 
   components: {
-    ProgressCircular,
     PostItem,
   },
 
   data: () => ({
     posts: [],
     quality: 0,
-    isLoad: false
   }),
 
   created() {
@@ -40,9 +36,7 @@ export default {
 
   methods: {
     async getPosts() {
-      this.isLoad = true
       const response = await getDefaultPosts()
-      this.isLoad = false
       this.posts = response.posts
       this.quality = response.quantity
     }

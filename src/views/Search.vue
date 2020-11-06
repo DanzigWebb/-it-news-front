@@ -12,20 +12,17 @@
       />
     </div>
 
-    <ProgressCircular v-if="isLoad" />
   </v-container>
 </template>
 
 <script>
 import PostsForm from '@/components/PostsForm'
-import getPosts from '@/services/getPosts'
 import PostItem from '@/components/posts/PostItem'
-import ProgressCircular from '@/components/ui/ProgressCircular'
+import getPosts from '@/services/posts/getPosts'
 
 export default {
   name: 'search',
   components: {
-    ProgressCircular,
     PostItem,
     PostsForm
   },
@@ -36,11 +33,10 @@ export default {
   }),
   methods: {
     async onSubmit(data) {
-      this.isLoad = true
       const response = await getPosts(data)
-      this.isLoad = false
-      this.posts = response.posts
-      this.quantity = response.quantity
+      const {posts, quantity} = response
+      this.posts = posts
+      this.quantity = quantity
     }
   }
 }

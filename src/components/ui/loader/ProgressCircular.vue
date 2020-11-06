@@ -1,12 +1,28 @@
 <template>
-  <div class="progress__wrapper">
+  <div class="progress__wrapper" v-if="isLoading">
     <v-progress-circular
         :size="50"
         color="primary"
-        indeterminate
-    ></v-progress-circular>
+        indeterminate>
+    </v-progress-circular>
   </div>
 </template>
+
+<script>
+import { Loader } from '@/components/ui/loader/LoaderState'
+
+export default {
+  data: () => ({
+    isLoading: false
+  }),
+
+  created() {
+    Loader.state$.subscribe(isLoading => (
+        this.isLoading = isLoading
+    ))
+  }
+}
+</script>
 
 <style lang="scss">
 .progress__wrapper {
