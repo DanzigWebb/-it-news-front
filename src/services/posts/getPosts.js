@@ -1,20 +1,23 @@
 import { Config } from '@/config/config'
 import { PostsResponse } from '@/services/models/Post'
 import { Loader } from '@/components/ui/loader/LoaderState'
+import { ajax } from 'rxjs/ajax'
+import { map, tap } from 'rxjs/operators'
 
-export default async function (data) {
+export default function (data) {
   Loader.show()
 
-  const url = `${Config.host}posts`
-  const res = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
-  })
+  return getPostsByRx(data).pipe(
+      tap(_ => Loader.hide()),
+      map(({response}) => new PostsResponse(response))
+  )
+}
 
-  const toJSON = await res.json()
-  Loader.hide()
-  return new PostsResponse(toJSON)
+function getPostsByRx(data) {
+  const url = `${Config.host}posts`
+  const headers = {
+    'Content-Type': 'application/json; charset=UTF-8'
+  }
+
+  return ajax.post(url, data, headers)
 }

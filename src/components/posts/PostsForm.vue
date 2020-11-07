@@ -1,11 +1,8 @@
 <template>
   <v-form v-model="valid" @submit.prevent="onSubmit()">
+
     <v-row align="center">
-      <v-col
-          class="d-flex"
-          cols="12"
-          md="4"
-      >
+      <v-col class="d-flex" cols="12" md="4">
         <v-select
             label="Кол-во страниц"
             :items="pages"
@@ -14,23 +11,16 @@
         />
       </v-col>
 
-      <v-col
-          class="d-flex"
-          cols="12"
-          md="4"
-      >
+      <v-col class="d-flex" cols="12" md="4">
         <v-text-field
             label="Темы"
             v-model="inputSubject"
             filled />
       </v-col>
     </v-row>
+
     <v-row>
-      <v-col
-          class="d-flex"
-          cols="12"
-          md="12"
-      >
+      <v-col class="d-flex" cols="12" md="12">
         <v-btn
             color="primary"
             class="mr-4"
@@ -40,6 +30,7 @@
         </v-btn>
       </v-col>
     </v-row>
+
   </v-form>
 </template>
 
@@ -52,14 +43,13 @@ export default {
     pages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     subjects: ['JavaScript', 'Angular', 'Vue'],
     currentPage: null,
-    currentSubject: null,
     inputSubject: ''
   }),
   created() {
     const [page] = this.pages
     const [subject] = this.subjects
     this.currentPage = page
-    this.currentSubject = subject
+    this.inputSubject = subject
   },
   methods: {
     onSubmit() {
